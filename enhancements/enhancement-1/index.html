@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+  Whispering Woods – Enhancement 1
+  Purpose: Landing page for the static, Pages-friendly game build.
+  Notes:
+    - Uses only relative paths and ES modules (no external deps)
+    - Provides a clear entry to play, and a button to clear saved progress
+    - Page is minimal; deeper narrative lives in game intro modal
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whispering Woods - Enhancement 1</title>
+    <meta name="description" content="Web-based enhancement of Whispering Woods using HTML, CSS, and JavaScript with localStorage persistence." />
+    <meta name="keywords" content="text adventure, web game, JavaScript, HTML5, CSS, localStorage, fog of war, Whispering Woods" />
+    <meta name="author" content="Duane Wegner" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div data-include="./components/header.html"></div>
+
+    <main class="container">
+      <!-- Project overview and quick-start controls -->
+      <section class="panel intro">
+        <h2>About</h2>
+        <p>
+          This enhancement ports the original Python text adventure into a browser-based experience
+          using modern HTML, CSS, and JavaScript. Game progress persists locally via your browser's
+          storage, no external services required and fully hostable on GitHub Pages.
+        </p>
+        <ul>
+          <li>Explore rooms with directional controls</li>
+          <li>Collect six items of power to face Darkroot</li>
+          <li>Fog-of-war reveals locations as you explore</li>
+          <li>Progress saved automatically (localStorage)</li>
+        </ul>
+        <div class="cta-row">
+          <!-- Start the game in the same enhancement folder -->
+          <a class="btn primary" href="./game.html">Start Game</a>
+          <!-- Clears only namespaced localStorage keys for this enhancement -->
+          <button class="btn" id="reset-save">Reset Saved Progress</button>
+          <a class="btn" href="./admin-login.html">Admin</a>
+        </div>
+      </section>
+
+      <section class="panel details">
+        <h2>How to Play</h2>
+        <p>
+          Move with the on-screen controls (or arrow keys/WASD). If a room contains an item of power,
+          use the Get button to add it to your inventory. When you're ready, enter Shadow Hollow.
+          If you carry all six items, you'll defeat Darkroot. Otherwise… not so much.
+        </p>
+      </section>
+
+      <section class="panel notes">
+        <h2>Technical Notes</h2>
+        <ul>
+          <li>Vanilla ES Modules (no external libraries)</li>
+          <li>All assets are relative paths (safe for GitHub Pages)</li>
+          <li>Data-driven rooms and exits in <code>./data/rooms.json</code> (no comments in JSON)</li>
+          <li>Game state stored under a namespaced key in localStorage</li>
+        </ul>
+      </section>
+    </main>
+
+    <div data-include="./components/footer.html"></div>
+    <script type="module" src="./js/include-html.js"></script>
+    <script type="module">
+      import { clearSave } from './js/storage.js';
+      const reset = document.getElementById('reset-save');
+      reset?.addEventListener('click', () => {
+        if (confirm('Clear saved progress? This cannot be undone.')) {
+          clearSave();
+          alert('Saved progress cleared.');
+        }
+      });
+    </script>
+  </body>
+  </html>
