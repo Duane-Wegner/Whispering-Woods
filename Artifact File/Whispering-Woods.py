@@ -13,7 +13,7 @@
 # falls under the shadowy grasp of Darkroot, an evil treant corrupted by a dark magic wielding druid. As the player
 # navigates through the Whispering Grove, Dusky Hollow, Hidden Vale, Murky Path, Moonlight Clearing, Ancient Tree,
 # Enchanted Grove, and Shadow Hollow, they must gather items of power to aid them in their journey to save the forest.
-# These items include a silver axe to cut through Darkroot’s bark, a sunlight elixir to lower Darkroot's defences, an
+# These items include a silver axe to cut through Darkroot’s bark, a sunlight elixir to lower Darkroot's defenses, an
 # ancient rune to provide light in darkroot's demise, a barkskin potion for protection, a druidic staff for channeling
 # nature's fire energy to slay Darkroot, and a cloak to provide camouflage in the battle against Darkroot bolstering
 # defense. The goal is to confront Darkroot and restore balance to evil and good in the once vibrant forest of the
