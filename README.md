@@ -67,19 +67,19 @@ Whispering Woods is a browser-hosted enhancement of an original Python text-base
 
 ### Admin Login<br>
 A lightweight local-only login screen used to protect the admin overlay.<br>
-<img src="images/admin-login.png" width="500" height="250">
+<img src="enhancements\enhancement-1\images\admin-login.png" width="500" height="250">
 
 ### Admin Panel<br>
 Tools for editing rooms, items, exits, and map metadata during development.<br>
-<img src="images/admin-panel.png" width="500">
+<img src="enhancements\enhancement-1\images/admin-panel.png" width="500">
 
 ### Home Page<br>
 Landing page that leads into the main game.<br>
-<img src="images/home.png" width="500">
+<img src="enhancements\enhancement-1\images/home.png" width="500">
 
 ### Game Play<br>
 Main interface showing the fog-of-war map, inventory, movement controls, and event log.<br>
-<img src="images/game.png" width="500">
+<img src="enhancements\enhancement-1\images/game.png" width="500">
 
 # Developer notes
 
