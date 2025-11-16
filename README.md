@@ -12,7 +12,7 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 ## Overview
 
-Whispering Woods is a browser-hosted enhancement of an original Python text-based adventure. This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](./Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
 
 ---
 
