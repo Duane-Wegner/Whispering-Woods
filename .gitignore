@@ -5,16 +5,6 @@ desktop.ini
 
 # Editors/IDE
 /.vscode/
-.idea/
-
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.egg-info/
-.venv/
-venv/
 
 # Node/JS 
 node_modules/
