@@ -12,7 +12,7 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 ## Overview
 
-Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](./Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](../../Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
 
 ---
 
@@ -67,19 +67,19 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
 
 ### Admin Login<br>
 A lightweight local-only login screen used to protect the admin overlay.<br>
-<img src="enhancements\enhancement-1\images\admin-login.png" width="500" height="250">
+<img src="images/admin-login.png" width="500" height="250">
 
 ### Admin Panel<br>
 Tools for editing rooms, items, exits, and map metadata during development.<br>
-<img src="enhancements\enhancement-1\images/admin-panel.png" width="500">
+<img src="images/admin-panel.png" width="500">
 
 ### Home Page<br>
 Landing page that leads into the main game.<br>
-<img src="enhancements\enhancement-1\images/home.png" width="500">
+<img src="images/home.png" width="500">
 
 ### Game Play<br>
 Main interface showing the fog-of-war map, inventory, movement controls, and event log.<br>
-<img src="enhancements\enhancement-1\images/game.png" width="500">
+<img src="images/game.png" width="500">
 
 # Developer notes
 
