@@ -95,7 +95,7 @@ Main interface showing the fog-of-war map, inventory, movement controls, and eve
 3. For local admin edits, open `admin-login.html` and create/login with a local password. Admin edits are stored in localStorage and apply at runtime when the game is loaded.
 
 ## How to run (user)
-1. Open `[enhancements/enhancement-1/index.html](https://duane-wegner.github.io/Whispering-Woods/index.html)` in a browser
+1. Open [Whispering Woods](https://duane-wegner.github.io/Whispering-Woods/index.html) in a browser
 2. Enjoy  
 
 
