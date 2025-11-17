@@ -22,6 +22,7 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
   - Enhancement 1 - Web-based Conversion
 - [Screenshots](#screenshots)
 - [How to run](#how-to-run-developer) (developer)
+- [How to run](#how-to-run-user) (user)
 - [Developer notes](#developer-notes)
 - [License & contact](#license--contact)
 
