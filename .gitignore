@@ -26,5 +26,3 @@ coverage/
 .env.*
 
 # Project-specific
-/legacy/
-/web/

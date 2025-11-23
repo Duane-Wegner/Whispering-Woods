@@ -1,0 +1,40 @@
+<!--
+  Admin Login (local-only)
+  Purpose: allows first-time password setup and login for the admin overlay.
+  Notes: password is stored as a hash in localStorage; session is in sessionStorage.
+  This is suitable for demos on static hosting (this is intended for use on e.g., GitHub Pages) only.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Login - Whispering Woods</title>
+    <meta name="description" content="Admin login for Whispering Woods (local-only). Setup a local admin password to edit the overlay for the enhancement." />
+    <meta name="author" content="Duane Wegner" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div data-include="./components/header.html"></div>
+    <main class="container">
+      <section class="panel">
+        <h2>Admin Access</h2>
+        <p class="room-desc">Local-only admin for demo purposes. Password is stored hashed in your browser.</p>
+        <form id="login-form" class="login-form" autocomplete="off">
+          <label>
+            <span>Password</span>
+            <input type="password" id="password" required minlength="4" />
+          </label>
+          <div class="cta-row">
+            <button class="btn primary" type="submit">Sign In</button>
+            <button class="btn" id="setup">First-time Setup</button>
+          </div>
+          <p id="msg" class="alerts" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+    <div data-include="./components/footer.html"></div>
+    <script type="module" src="./js/include-html.js"></script>
+    <script type="module" src="./js/admin/login.js"></script>
+  </body>
+  </html>

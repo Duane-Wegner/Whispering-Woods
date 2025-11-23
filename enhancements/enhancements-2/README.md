@@ -147,31 +147,31 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
 
 ### Admin Login<br>
 A lightweight local-only login screen used to protect the admin overlay.<br>
-<img src="enhancements\enhancement-1\images/admin-login.png" width="500" height="250">
+<img src="images/admin-login.png" width="500" height="250">
 
 ### Admin Panel<br>
 Tools for editing rooms, items, exits, and map metadata during development.<br>
-<img src="enhancements\enhancement-1\images/admin-panel.png" width="500">
+<img src="images/admin-panel.png" width="500">
 
 ### Home Page<br>
 Landing page that leads into the main game.<br>
-<img src="enhancements\enhancement-1\images/home.png" width="500">
+<img src="images/home.png" width="500">
 
 ### Game Play<br>
 Main interface showing the fog-of-war map, inventory, movement controls, and event log.<br>
-<img src="enhancements\enhancement-1\images/game.png" width="500">
+<img src="images/game.png" width="500">
 
 ### Add Room / Export Changes / Import Changes
 Admin interface showing the added features and a working test room that has been added.<br>
-<img src="enhancements\enhancements-2\images/test-a.png" width="500"> <img src="enhancements\enhancements-2\images/test-a_Room.png" width="500">
+<img src="images/test-a.png" width="500"> <img src="images/test-a_Room.png" width="500">
 
 ### Algorithms Demo
 Admin interface showcasing the Algorithms Demo.<br>
-<img src="enhancements\enhancements-2\images/AlgoTest.png" width="500">
+<img src="images/AlgoTest.png" width="500">
 
 ### Algorithms Unit Tests
 Admin interface showcasing the Algorithms Unit Test.<br>
-<img src="enhancements\enhancements-2\images/algoUnitTest.png" width="500">
+<img src="images/algoUnitTest.png" width="500">
 
 
 # Developer notes

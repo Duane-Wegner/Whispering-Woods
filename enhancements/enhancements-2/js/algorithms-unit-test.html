@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Algorithms Unit Tests</title>
+  <style>body{font-family:system-ui,Arial;padding:16px;background:#0f0f14;color:#e6e6f0} .ok{color:#6fe08f} .fail{color:#ff8b8b}</style>
+</head>
+<body>
+  <h1>algorithms.js Unit Tests</h1>
+  <p><a href="../admin.html">← Back to Admin</a></p>
+  <p>
+    These unit tests run small, deterministic checks on the BFS helpers.
+    The in-memory test graph is intentionally tiny: the start node `A` has two
+    direct neighbors (`B` and `E`) and both of those neighbors contain an item.
+    The tests verify that:
+    - `bfsPath` returns the expected shortest path,
+    - `bfsNearestWithItem` returns all equidistant nearest items (both `B` and `E`),
+    - `immediateNeighbors` and `reachableWithin` return the correct one-step and
+      depth-limited neighbors sets.
+    Open the page and look for PASS/FAIL lines to validate behavior.
+  </p>
+  <div id="out"></div>
+  <script type="module">
+    import { bfsPath, bfsNearestWithItem, reachableRooms, immediateNeighbors, reachableWithin } from './algorithms.js';
+
+    function assert(cond, msg){ const o=document.getElementById('out'); const p=document.createElement('div'); p.textContent = (cond? 'PASS: ' : 'FAIL: ') + msg; p.className = cond? 'ok' : 'fail'; o.appendChild(p); if(!cond) throw new Error('Test failed: '+msg); }
+
+    // Small graph for tests: ensure multiple equidistant items are returned
+    const rooms = {
+      A: { exits: {East: 'B', South: 'E'}, item: null },
+      B: { exits: {West: 'A'}, item: 'Coin' },
+      C: { exits: {}, item: null },
+      D: { exits: {}, item: null },
+      E: { exits: {North: 'A'}, item: 'Gem' }
+    };
+
+    // bfsPath
+    const p1 = bfsPath(rooms, 'A', 'B');
+    assert(Array.isArray(p1) && p1.join(',') === 'A,B', 'A -> B path should be A,B');
+    const p2 = bfsPath(rooms, 'A', 'A');
+    assert(Array.isArray(p2) && p2[0] === 'A', 'A -> A returns [A]');
+
+    // bfsNearestWithItem should return all nearest paths (B and E are both distance 1)
+    const nearest = bfsNearestWithItem(rooms, 'A');
+    assert(Array.isArray(nearest) && nearest.length === 2, 'Should return 2 nearest paths');
+    const targets = nearest.map(p => p[p.length - 1]).sort();
+    assert(targets.join(',') === 'B,E' || targets.join(',') === 'E,B', 'Nearest targets are B and E');
+
+    // reachableRooms
+    const reach = reachableRooms(rooms, 'A');
+    assert(Array.isArray(reach) && reach.includes('B') && reach.includes('E'), 'Reachable from A includes B and E');
+
+    // immediateNeighbors and reachableWithin
+    const imm = immediateNeighbors(rooms, 'A');
+    assert(Array.isArray(imm) && imm.length === 2 && imm.includes('B') && imm.includes('E'), 'Immediate neighbors of A are B and E');
+    const within1 = reachableWithin(rooms, 'A', 1);
+    assert(Array.isArray(within1) && within1.length === 2, 'reachableWithin depth 1 returns two rooms');
+
+    const o=document.getElementById('out'); const done=document.createElement('div'); done.textContent='All tests completed.'; done.style.marginTop='12px'; o.appendChild(done);
+  </script>
+</body>
+</html>
