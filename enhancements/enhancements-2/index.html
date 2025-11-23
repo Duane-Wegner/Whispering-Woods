@@ -25,22 +25,28 @@
       <section class="panel intro">
         <h2>About</h2>
         <p>
-          This enhancement ports the original Python text adventure into a browser-based experience
-          using modern HTML, CSS, and JavaScript. Game progress persists locally via your browser's
-          storage, no external services required and fully hostable on GitHub Pages.
+          Enhancement 2 builds on the web port of Whispering Woods by adding algorithmic
+          tooling and developer-facing features while keeping the app fully static and
+          GitHub Pages friendly. This release adds pathfinding and reachable-area algorithms
+          (used for UI highlighting and gameplay hints), in-browser unit/demo pages for those
+          algorithms, and improved admin tools for importing/exporting overlay edits.
+        </p>
+        <p>
+          The game remains a zero-server static site: all progress and overlays persist in your
+          browser via namespaced <code>localStorage</code> keys. The UI continues to support
+          keyboard controls, fog-of-war exploration, and the same inventory/encounter flow.
         </p>
         <ul>
-          <li>Explore rooms with directional controls</li>
-          <li>Collect six items of power to face Darkroot</li>
-          <li>Fog-of-war reveals locations as you explore</li>
-          <li>Progress saved automatically (localStorage)</li>
+          <li>Algorithmic helpers (BFS pathfinding, nearest-item search, reachable sets)</li>
+          <li>Developer demo pages and in-browser unit tests for algorithms</li>
+          <li>Admin import/export for overlay JSON (safely apply local map edits)</li>
+          <li>Static, relative-URL assets — safe to publish on GitHub Pages</li>
         </ul>
         <div class="cta-row">
-          <!-- Start the game in the same enhancement folder -->
           <a class="btn primary" href="./game.html">Start Game</a>
-          <!-- Clears only namespaced localStorage keys for this enhancement -->
           <button class="btn" id="reset-save">Reset Saved Progress</button>
           <a class="btn" href="./admin-login.html">Admin</a>
+          <a class="btn" href="../enhancement-1/index.html">Enhancement 1 (Web Port)</a>
         </div>
       </section>
 
@@ -56,10 +62,26 @@
       <section class="panel notes">
         <h2>Technical Notes</h2>
         <ul>
-          <li>Vanilla ES Modules (no external libraries)</li>
-          <li>All assets are relative paths (safe for GitHub Pages)</li>
-          <li>Data-driven rooms and exits in <code>./data/rooms.json</code> (no comments in JSON)</li>
-          <li>Game state stored under a namespaced key in localStorage</li>
+          <li>Vanilla ES Modules and plain HTML/CSS — no external runtime dependencies.</li>
+          <li>All assets use relative paths so the site can be served from any static host
+            (example: GitHub Pages). A Pages-focused branch called <code>enhancement-2-pages</code>
+            contains only the enhancement subtree for easy publishing.</li>
+          <li>Rooms and graph topology are data-driven in <code>./data/rooms.json</code>. The
+            JSON model expects a top-level <code>rooms</code> object; overlays are the same shape.</li>
+          <li>Algorithmic features:
+            <ul>
+              <li><strong>bfsPath</strong>: finds shortest path between two room IDs (O(V+E)).</li>
+              <li><strong>bfsNearestWithItem</strong>: locates the nearest room containing an item.</li>
+              <li><strong>reachableWithin</strong>: computes all rooms reachable within N steps.</li>
+            </ul>
+          </li>
+          <li>Admin overlay edits are persisted to a namespaced localStorage key (keeps overlays
+            separate from player saves). Use the Admin page's Export/Import to move overlays
+            between browsers or share edits.</li>
+          <li>LocalStorage namespace examples: player saves and overlays use distinct keys so
+            upgrades remain backward compatible. See <code>js/storage.js</code> for exact keys.</li>
+          <li>Accessibility: keyboard controls (arrow keys / WASD) and clear focusable buttons are
+            implemented; enhancements can be extended with ARIA announcements and toasts.</li>
         </ul>
       </section>
     </main>
