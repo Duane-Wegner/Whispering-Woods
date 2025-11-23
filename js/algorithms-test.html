@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Algorithms Test — Whispering Woods</title>
+  <style>body{font-family:Arial;margin:20px} pre{background:#f5f5f5;padding:10px;border:1px solid #ddd}</style>
+</head>
+<body>
+  <h1>Algorithms Test — Whispering Woods (enhancements-2)</h1>
+  <p><a href="../admin.html">← Back to Admin</a></p>
+  <p>
+    This page demonstrates the pathfinding and exploration helpers against the project's
+    `data/rooms.json`. It shows a shortest-path example, finds the nearest acquirable
+    item(s) from the starting room, and displays different reachability queries:
+    - <strong>reachableRooms</strong> returns the entire connected component (all rooms
+    reachable by any number of steps), while <strong>immediateNeighbors</strong> returns
+    only direct (one-step) exits. <strong>reachableWithin</strong> shows rooms within N steps.
+    The algorithms operate on room IDs (keys from `rooms.json`) rather than human-readable names.
+  </p>
+  <div id="out"></div>
+  <script type="module">
+    import { bfsPath, bfsNearestWithItem, reachableRooms, immediateNeighbors, reachableWithin } from './algorithms.js';
+
+    async function loadJSON(path){ const r=await fetch(path); return r.json(); }
+
+    function log(s){ const o=document.getElementById('out'); const p=document.createElement('pre'); p.textContent = s; o.appendChild(p); }
+
+    (async ()=>{
+      const data = await loadJSON('../data/rooms.json');
+      // Build rooms object from the file's `rooms` property (keys are room IDs)
+      const raw = data.rooms || {};
+      const rooms = {};
+      for (const [id, def] of Object.entries(raw)) {
+        const exitsMap = def.exits || def.Exits || (function(){
+          const m = {}; for (const [k,v] of Object.entries(def)){ if (['pos','grid','Item','item','name','desc'].includes(k)) continue; if (typeof v === 'string') m[k] = v; } return m; })();
+        rooms[id] = { exits: exitsMap, item: def.item || def.Item || null };
+      }
+
+      log('Rooms loaded: ' + Object.keys(rooms).join(', '));
+
+      // Description block for helpers available on this page
+      log('Helper descriptions:');
+      log(' - bfsPath(rooms, start, goal): Shortest path (BFS) from start -> goal. O(V+E)');
+      log(' - bfsNearestWithItem(rooms, start): All shortest paths to nearest acquirable item(s). O(V+E)');
+      log(' - reachableRooms(rooms, start): All rooms reachable from start (full component). O(V+E)');
+      log(' - immediateNeighbors(rooms, start): Direct neighbors (one-step exits). O(d)');
+      log(' - reachableWithin(rooms, start, maxDepth): Rooms reachable within maxDepth steps. Depth-limited BFS.');
+
+      // Example: find path using room IDs (keys from rooms.json)
+      const p = bfsPath(rooms, 'whispering-grove', 'enchanted-grove');
+      log('Path whispering-grove -> enchanted-grove: ' + (p? p.join(' -> ') : 'unreachable'));
+
+      // Nearest item(s) from whispering-grove (by ID) — may return multiple paths
+      const nis = bfsNearestWithItem(rooms, 'whispering-grove');
+      if (Array.isArray(nis) && nis.length) {
+        for (const path of nis) log('Nearest item path from whispering-grove: ' + path.join(' -> '));
+      } else {
+        log('Nearest item path from whispering-grove: none');
+      }
+
+      // Reachable from murky-path (full BFS)
+      const r = reachableRooms(rooms, 'murky-path');
+      log('Reachable from murky-path (full): ' + r.join(', '));
+
+      // Immediate neighbors (one-step)
+      const nb = immediateNeighbors(rooms, 'murky-path');
+      log('Immediate neighbors of murky-path: ' + nb.join(', '));
+
+      // Reachable within 1 step (equivalent to immediateNeighbors) and 2 steps
+      const within1 = reachableWithin(rooms, 'murky-path', 1);
+      const within2 = reachableWithin(rooms, 'murky-path', 2);
+      log('Reachable within 1 step of murky-path: ' + within1.join(', '));
+      log('Reachable within 2 steps of murky-path: ' + within2.join(', '));
+
+    })();
+  </script>
+</body>
+</html>
