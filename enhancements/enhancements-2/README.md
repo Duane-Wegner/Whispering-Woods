@@ -21,7 +21,6 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
 - [Enhancements](#enhancements)
   - Enhancement 1 - Web-based Conversion
   - Enhancement 2 - Algorithms & Data Structures
-  - Enhancement 3 - Databases
 - [Screenshots](#screenshots)
 - [How to run](#how-to-run-developer) (developer)
 - [Developer notes](#developer-notes)
@@ -143,38 +142,6 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
     - `js/ui/map.js` & `css/styles.css` — minor updates to support path highlighting and map rendering behaviors.
     - `data/rooms.json` — the data-driven room graph used by the algorithms; remains the authoritative source of room definitions.
 
-  <br>
-
-    ### Enhancement 3 - Local Admin Overlay & UX (enhancement-3)
-
-    Summary
-
-    - Extends the admin overlay workflow with a safer import experience and improved UX while keeping all persistence local to the browser.
-    - Adds preview and confirm step for imported overlays, stronger client-side validation, and timestamped export filenames to help trace changes when collaborators share overlay files.
-
-    Key features (Enhancement 3)
-
-    - Admin Import Preview: after selecting a JSON file, the admin UI shows a formatted preview and requires explicit confirmation before applying changes.
-    - Stronger Validation: imports are validated for expected shapes (top-level object, `rooms` map, per-room `name`, `desc`, `pos`, `item`, and `exits`). Invalid files are rejected with clear messages.
-    - Timestamped Exports: exported overlay files are named like `overlay-YYYYMMDD-HHMMSS.json` to help collaborators identify versions.
-    - Local-only Persistence: all changes remain stored in the browser via namespaced keys; no server-side persistence is added in this enhancement.
-
-    Storage and Authentication (local databases)
-
-    - The app uses browser storage as lightweight local databases:
-      - `localStorage` holds persistent data across browser sessions for the origin. Keys are namespaced via the storage helper so the effective keys include the namespace prefix. Examples you will see in the code and DevTools include:
-        - `ww:enh1:save:v1` — player save slot (full runtime state snapshot).
-        - `ww:enh1:admin:overlay:v1` — admin overlay JSON that patches `data/rooms.json` at runtime.
-        - `ww:enh1:admin:pwdhash:v1` — SHA-256 hash of the admin password for local-only auth.
-      - `sessionStorage` is used for a per-tab admin session flag: `admin:session:v1` (cleared on tab close).
-
-    - Overlay behavior:
-      - Overlays mirror the shape of `data/rooms.json` and are merged at runtime by `js/state.js`. Overlays do not change the base JSON file on disk; they only affect the running application in that browser profile.
-      - To share overlays between browsers or teammates, use the Admin Export button to download a JSON file and the Admin Import to load it into a different browser or profile.
-
-    - Practical notes:
-      - localStorage is per-origin and per-profile; it is not a replacement for a centralized database. Typical browser quotas are around 5MB per origin. Keep overlays small and use export/import for transfer or archival.
-      - The stored password hash is readable by anyone with access to the browser profile; the local auth is convenience-only and not a secure authentication mechanism.
 
 ## Screenshots
 
@@ -216,7 +183,7 @@ Admin interface showcasing the Algorithms Unit Test.<br>
 
 ## How to run (developer)
 
-1. Open `enhancement/enhancement-3/index.html` in a browser (double-click or use a local static server).
+1. Open `enhancements/enhancement-1/index.html` in a browser (double-click or use a local static server).
 2. For editing the base rooms, modify `data/rooms.json`.
 3. For local admin edits, open `admin-login.html` and create/login with a local password. Admin edits are stored in localStorage and apply at runtime when the game is loaded.
 
