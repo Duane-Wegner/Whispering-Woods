@@ -1,0 +1,103 @@
+<!doctype html>
+<!--
+  Whispering Woods – Enhancement 1
+  Purpose: Landing page for the static, Pages-friendly game build.
+  Notes:
+    - Uses only relative paths and ES modules (no external deps)
+    - Provides a clear entry to play, and a button to clear saved progress
+    - Page is minimal; deeper narrative lives in game intro modal
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whispering Woods - Enhancement 1</title>
+    <meta name="description" content="Web-based enhancement of Whispering Woods using HTML, CSS, and JavaScript with localStorage persistence." />
+    <meta name="keywords" content="text adventure, web game, JavaScript, HTML5, CSS, localStorage, fog of war, Whispering Woods" />
+    <meta name="author" content="Duane Wegner" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div data-include="./components/header.html"></div>
+
+    <main class="container">
+      <!-- Project overview and quick-start controls -->
+      <section class="panel intro">
+        <h2>About</h2>
+        <p>
+          Enhancement 2 builds on the web port of Whispering Woods by adding algorithmic
+          tooling and developer-facing features while keeping the app fully static and
+          GitHub Pages friendly. This release adds pathfinding and reachable-area algorithms
+          (used for UI highlighting and gameplay hints), in-browser unit/demo pages for those
+          algorithms, and improved admin tools for importing/exporting overlay edits.
+        </p>
+        <p>
+          The game remains a zero-server static site: all progress and overlays persist in your
+          browser via namespaced <code>localStorage</code> keys. The UI continues to support
+          keyboard controls, fog-of-war exploration, and the same inventory/encounter flow.
+        </p>
+        <ul>
+          <li>Algorithmic helpers (BFS pathfinding, nearest-item search, reachable sets)</li>
+          <li>Developer demo pages and in-browser unit tests for algorithms</li>
+          <li>Admin import/export for overlay JSON (safely apply local map edits)</li>
+          <li>Static, relative-URL assets — safe to publish on GitHub Pages</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn primary" href="./game.html">Start Game</a>
+          <button class="btn" id="reset-save">Reset Saved Progress</button>
+          <a class="btn" href="./admin-login.html">Admin</a>
+          <a class="btn" href="../enhancement-1/index.html">Enhancement 1 (Software Design and Engineering)</a>
+          <a class="btn" href="../enhancement-3/index.html">Enhancement 3 (Databases)</a>
+        </div>
+      </section>
+
+      <section class="panel details">
+        <h2>How to Play</h2>
+        <p>
+          Move with the on-screen controls (or arrow keys/WASD). If a room contains an item of power,
+          use the Get button to add it to your inventory. When you're ready, enter Shadow Hollow.
+          If you carry all six items, you'll defeat Darkroot. Otherwise… not so much.
+        </p>
+      </section>
+
+      <section class="panel notes">
+        <h2>Technical Notes</h2>
+        <ul>
+          <li>Vanilla ES Modules and plain HTML/CSS — no external runtime dependencies.</li>
+          <li>All assets use relative paths so the site can be served from any static host
+            (example: GitHub Pages). A Pages-focused branch called <code>enhancement-2-pages</code>
+            contains only the enhancement subtree for easy publishing.</li>
+          <li>Rooms and graph topology are data-driven in <code>./data/rooms.json</code>. The
+            JSON model expects a top-level <code>rooms</code> object; overlays are the same shape.</li>
+          <li>Algorithmic features:
+            <ul>
+              <li><strong>bfsPath</strong>: finds shortest path between two room IDs (O(V+E)).</li>
+              <li><strong>bfsNearestWithItem</strong>: locates the nearest room containing an item.</li>
+              <li><strong>reachableWithin</strong>: computes all rooms reachable within N steps.</li>
+            </ul>
+          </li>
+          <li>Admin overlay edits are persisted to a namespaced localStorage key (keeps overlays
+            separate from player saves). Use the Admin page's Export/Import to move overlays
+            between browsers or share edits.</li>
+          <li>LocalStorage namespace examples: player saves and overlays use distinct keys so
+            upgrades remain backward compatible. See <code>js/storage.js</code> for exact keys.</li>
+          <li>Accessibility: keyboard controls (arrow keys / WASD) and clear focusable buttons are
+            implemented; enhancements can be extended with ARIA announcements and toasts.</li>
+        </ul>
+      </section>
+    </main>
+
+    <div data-include="./components/footer.html"></div>
+    <script type="module" src="./js/include-html.js"></script>
+    <script type="module">
+      import { clearSave } from './js/storage.js';
+      const reset = document.getElementById('reset-save');
+      reset?.addEventListener('click', () => {
+        if (confirm('Clear saved progress? This cannot be undone.')) {
+          clearSave();
+          alert('Saved progress cleared.');
+        }
+      });
+    </script>
+  </body>
+  </html>

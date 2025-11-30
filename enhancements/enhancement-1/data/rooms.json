@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "startingRoom": "whispering-grove",
+  "rooms": {
+    "whispering-grove": {
+      "name": "Whispering Grove",
+      "desc": "The elders' voices seem to ride the wind. Paths lead in all directions.",
+      "exits": {"North": "murky-path", "East": "moonlight-clearing", "West": "dusky-hollow", "South": "ancient-tree"},
+      "item": null,
+      "pos": [0, 0]
+    },
+    "dusky-hollow": {
+      "name": "Dusky Hollow",
+      "desc": "Shadows cluster under the boughs.",
+      "exits": {"East": "whispering-grove"},
+      "item": "Silver Axe",
+      "pos": [-1, 0]
+    },
+    "murky-path": {
+      "name": "Murky Path",
+      "desc": "Mist clings to the ground; your steps are hushed.",
+      "exits": {"East": "hidden-vale", "South": "whispering-grove"},
+      "item": "Cloak",
+      "pos": [0, 1]
+    },
+    "hidden-vale": {
+      "name": "Hidden Vale",
+      "desc": "A secluded glen where light fights to reach the earth.",
+      "exits": {"West": "murky-path"},
+      "item": "Sunlight Elixir",
+      "pos": [1, 1]
+    },
+    "moonlight-clearing": {
+      "name": "Moonlight Clearing",
+      "desc": "Moonbeams pool like silver water.",
+      "exits": {"West": "whispering-grove", "North": "shadow-hollow"},
+      "item": "Druidic Staff",
+      "pos": [2, 0]
+    },
+    "ancient-tree": {
+      "name": "Ancient Tree",
+      "desc": "Roots like ribs of the world encircle you.",
+      "exits": {"North": "whispering-grove", "East": "enchanted-grove"},
+      "item": "Barkskin Potion",
+      "pos": [0, -1]
+    },
+    "enchanted-grove": {
+      "name": "Enchanted Grove",
+      "desc": "Whispers take on a musical tone.",
+      "exits": {"West": "ancient-tree"},
+      "item": "Ancient Rune",
+      "pos": [1, -1]
+    },
+    "shadow-hollow": {
+      "name": "Shadow Hollow",
+      "desc": "A hush falls. The air thickens with malice.",
+      "exits": {"South": "moonlight-clearing"},
+      "item": null,
+      "pos": [2, 1]
+    }
+  }
+}

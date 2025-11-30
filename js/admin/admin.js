@@ -1,0 +1,301 @@
+/**
+ * Admin panel wiring
+ * Verifies session, loads base rooms.json + local overlay, and provides
+ * a simple CRUD UI for editing rooms. Changes persist in localStorage.
+ */
+import { isAuthed, logout } from './auth.js';
+import { getOverlay, saveOverlay, listRooms, upsertRoom, deleteRoom, exportOverlay } from './model.js';
+
+let BASE = null;
+let OVERLAY = null;
+let CURRENT_ID = null;
+let PENDING_IMPORT = null;
+
+/** Initialize admin panel: auth check, load data, then render UI. */
+async function init() {
+  if (!isAuthed()) {
+    location.href = './admin-login.html';
+    return;
+  }
+  // Load base data fresh (avoid cache) and current overlay snapshot
+  const res = await fetch('./data/rooms.json', { cache: 'no-store' });
+  BASE = await res.json();
+  OVERLAY = getOverlay();
+  renderList();
+  hookControls();
+}
+
+/** Wire event handlers for admin actions (add/save/delete/export/logout). */
+function hookControls() {
+  document.getElementById('btn-add-room')?.addEventListener('click', () => {
+    CURRENT_ID = null;
+    fillForm({ id: '', name: '', desc: '', pos: [0,0], item: '', exits: {} });
+  });
+  document.getElementById('btn-export')?.addEventListener('click', () => {
+    const ts = formatTimestamp();
+    const name = `overlay-${ts}.json`;
+    const blob = new Blob([exportOverlay(OVERLAY)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name; a.click();
+    // Clean up the one-time object URL
+    URL.revokeObjectURL(url);
+  });
+  // Import overlay JSON from a local file
+  const fileInput = document.getElementById('overlay-file');
+  document.getElementById('btn-import')?.addEventListener('click', () => {
+    fileInput?.click();
+  });
+  fileInput?.addEventListener('change', async (ev) => {
+    const f = ev.target.files?.[0];
+    if (!f) return;
+    try {
+      const text = await f.text();
+      const parsed = JSON.parse(text);
+      const validation = validateOverlay(parsed);
+      if (!validation.valid) {
+        alert('Invalid overlay file:\n' + validation.errors.join('\n'));
+        return;
+      }
+      // Show preview and wait for explicit confirmation
+      PENDING_IMPORT = parsed;
+      showImportPreview(parsed);
+    } catch (err) {
+      console.error('Failed to import overlay:', err);
+      alert('Failed to import overlay: ' + (err && err.message ? err.message : String(err)));
+    } finally {
+      // reset file input so same file can be re-selected if needed
+      if (fileInput) fileInput.value = '';
+    }
+  });
+  document.getElementById('btn-clear')?.addEventListener('click', () => {
+    if (confirm('Clear all local admin changes?')) {
+      OVERLAY = { rooms: {} };
+      saveOverlay(OVERLAY);
+      renderList();
+      clearForm();
+    }
+  });
+  document.getElementById('btn-logout')?.addEventListener('click', () => {
+    logout();
+    location.href = './admin-login.html';
+  });
+
+  document.getElementById('room-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = readForm();
+    if (!data.id) return;
+    CURRENT_ID = data.id;
+    upsertRoom(OVERLAY, data.id, toPatch(data));
+    saveOverlay(OVERLAY);
+    renderList();
+    inform('Saved. Changes will apply in-game on next load/reset.');
+  });
+
+  document.getElementById('btn-delete')?.addEventListener('click', () => {
+    if (CURRENT_ID && confirm('Delete this room change from overlay?')) {
+      deleteRoom(OVERLAY, CURRENT_ID);
+      saveOverlay(OVERLAY);
+      renderList();
+      clearForm();
+    }
+  });
+}
+
+/** Create a filesystem-safe timestamp for export filenames. */
+function formatTimestamp(d = new Date()) {
+  const pad = (n, w = 2) => String(n).padStart(w, '0');
+  const YYYY = d.getFullYear();
+  const MM = pad(d.getMonth() + 1);
+  const DD = pad(d.getDate());
+  const hh = pad(d.getHours());
+  const mm = pad(d.getMinutes());
+  const ss = pad(d.getSeconds());
+  return `${YYYY}${MM}${DD}-${hh}${mm}${ss}`;
+}
+
+/** Basic but stronger validation for the overlay shape. */
+function validateOverlay(obj) {
+  const errors = [];
+  if (!obj || typeof obj !== 'object') {
+    errors.push('Top-level JSON must be an object.');
+    return { valid: false, errors };
+  }
+  if (obj.startingRoom !== undefined && typeof obj.startingRoom !== 'string') {
+    errors.push('If present, "startingRoom" must be a string.');
+  }
+  if (!obj.rooms || typeof obj.rooms !== 'object') {
+    errors.push('Missing or invalid "rooms" map (expected an object).');
+    return { valid: false, errors };
+  }
+  for (const [id, room] of Object.entries(obj.rooms)) {
+    if (!room || typeof room !== 'object') {
+      errors.push(`Room "${id}" must be an object.`);
+      continue;
+    }
+    if (room.name !== undefined && typeof room.name !== 'string') {
+      errors.push(`Room "${id}" field "name" must be a string.`);
+    }
+    if (room.desc !== undefined && typeof room.desc !== 'string') {
+      errors.push(`Room "${id}" field "desc" must be a string.`);
+    }
+    if (room.item !== undefined && room.item !== null && typeof room.item !== 'string') {
+      errors.push(`Room "${id}" field "item" must be a string or null.`);
+    }
+    if (room.pos !== undefined) {
+      if (!Array.isArray(room.pos) || room.pos.length !== 2 || !room.pos.every(n => typeof n === 'number')) {
+        errors.push(`Room "${id}" field "pos" must be an array of two numbers.`);
+      }
+    }
+    if (room.exits !== undefined) {
+      if (typeof room.exits !== 'object' || Array.isArray(room.exits)) {
+        errors.push(`Room "${id}" field "exits" must be an object mapping directions to room ids.`);
+      } else {
+        for (const [dir, target] of Object.entries(room.exits)) {
+          if (typeof target !== 'string') errors.push(`Exit "${dir}" in room "${id}" must point to a room id string.`);
+        }
+      }
+    }
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+/** Display the parsed overlay JSON in the preview area and show confirm/cancel controls. */
+function showImportPreview(parsed) {
+  const preview = document.getElementById('import-preview');
+  const pre = document.getElementById('overlay-preview');
+  if (!preview || !pre) return;
+  pre.textContent = JSON.stringify(parsed, null, 2);
+  preview.style.display = 'block';
+}
+
+/** Hide the import preview and clear pending import. */
+function hideImportPreview() {
+  const preview = document.getElementById('import-preview');
+  const pre = document.getElementById('overlay-preview');
+  if (pre) pre.textContent = '';
+  if (preview) preview.style.display = 'none';
+  PENDING_IMPORT = null;
+}
+
+// Confirm/Cancel handlers for the preview import
+document.getElementById('btn-confirm-import')?.addEventListener('click', () => {
+  if (!PENDING_IMPORT) return;
+  OVERLAY = PENDING_IMPORT;
+  saveOverlay(OVERLAY);
+  renderList();
+  clearForm();
+  hideImportPreview();
+  inform('Overlay imported successfully. Changes are saved locally.');
+});
+document.getElementById('btn-cancel-import')?.addEventListener('click', () => {
+  hideImportPreview();
+});
+
+/** Render list of rooms (base+overlay) with buttons to edit. */
+function renderList() {
+  const list = document.getElementById('rooms-list');
+  list.innerHTML = '';
+  const rooms = listRooms(BASE, OVERLAY);
+  rooms.forEach(({ id, room }) => {
+    const div = document.createElement('div');
+    div.className = 'inventory';
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = `${id} - ${room?.name ?? ''}`;
+    btn.addEventListener('click', () => {
+      CURRENT_ID = id;
+      fillForm({
+        id,
+        name: room?.name ?? '',
+        desc: room?.desc ?? '',
+        pos: room?.pos ?? [0,0],
+        item: room?.item ?? '',
+        exits: room?.exits ?? {},
+      });
+    });
+    div.appendChild(btn);
+    list.appendChild(div);
+  });
+}
+
+/** Populate the form with a room record. */
+function fillForm(r) {
+  setVal('room-id', r.id);
+  setVal('room-name', r.name);
+  setVal('room-desc', r.desc);
+  setVal('room-item', r.item || '');
+  setVal('room-x', r.pos?.[0] ?? 0);
+  setVal('room-y', r.pos?.[1] ?? 0);
+  setVal('exit-n', r.exits?.North || '');
+  setVal('exit-s', r.exits?.South || '');
+  setVal('exit-e', r.exits?.East || '');
+  setVal('exit-w', r.exits?.West || '');
+  inform('');
+}
+
+/** Reset the form to an empty room template. */
+function clearForm() {
+  fillForm({ id: '', name: '', desc: '', pos: [0,0], item: '', exits: {} });
+}
+
+/**
+ * Read and coerce form values into a room object.
+ * @returns {{ id:string, name:string, desc:string, item:string|null, pos:[number,number], exits:Record<string,string> }}
+ */
+function readForm() {
+  return {
+    id: val('room-id').trim(),
+    name: val('room-name').trim(),
+    desc: val('room-desc').trim(),
+    item: (val('room-item').trim() || null),
+    pos: [Number(val('room-x') || 0), Number(val('room-y') || 0)],
+    exits: {
+      ...(val('exit-n').trim() ? { North: val('exit-n').trim() } : {}),
+      ...(val('exit-s').trim() ? { South: val('exit-s').trim() } : {}),
+      ...(val('exit-e').trim() ? { East: val('exit-e').trim() } : {}),
+      ...(val('exit-w').trim() ? { West: val('exit-w').trim() } : {}),
+    },
+  };
+}
+
+// Developer notes:
+// - readForm coerces types: pos values are Numbers and exits are a simple map.
+// - The admin UI treats room id as the unique key. If you allow renaming ids you
+//   should implement a migrate/rename operation to update any edges that point
+//   to the old id. Currently, changing the id creates a new overlay entry.
+// - toPatch creates a shallow patch object. state.js merges exits specially so
+//   admins can add a single new exit without copying the entire exit table.
+
+/**
+ * Produce a minimal patch payload from the full form data.
+ * @param {{ name:string, desc:string, pos:[number,number], item:string|null, exits:Record<string,string> }} data
+ * @returns {object}
+ */
+function toPatch(data) {
+  return {
+    name: data.name,
+    desc: data.desc,
+    pos: data.pos,
+    item: data.item,
+    exits: data.exits,
+  };
+}
+
+/** Set input value if element exists. */
+function setVal(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.value = value;
+}
+/** Get input value (string) or empty if missing. */
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
+}
+/** Show a transient info message under the form. */
+function inform(msg) {
+  const el = document.getElementById('admin-msg');
+  if (el) el.textContent = msg;
+}
+
+init();
