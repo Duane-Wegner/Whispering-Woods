@@ -1,4 +1,4 @@
-[Home](README.md) - [Code Review](CodeReview.md) - [Data Structures and Algorithms](data_structures.md) - [Software Engineering and Design](softeng_design.md) - [Databases](databases.md)
+[Home](README.md) - [Code Review](CodeReview.md) - [Data Structures and Algorithms](data_structures.md) - [Software Engineering and Design](softeng_design.md) - [Databases](databases.md) - [Self-Assessment](selfassessment.md)
 
 # Whispering-Woods
 CS-499 Computer Science Capstone 2025
@@ -249,6 +249,7 @@ Copyright © 2025 Duane Wegner.
 
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
+
 
 
 
