@@ -3,13 +3,13 @@
 ### Enhancement 1: Initial Web-Based Conversion (Software Engineering and Design)
 
 ### Description of the Enhancement
-Enhancement 1 converted Whispering Woods from a Python text-based game into a web-based interactive application using HTML, CSS, and JavaScript. Features included modular front-end and back-end design, basic map exploration, player inventory display, and state persistence using localStorage.
+&emsp;Enhancement 1 converted Whispering Woods from a Python text-based game into a web-based interactive application using HTML, CSS, and JavaScript. Features included modular front-end and back-end design, basic map exploration, player inventory display, and state persistence using localStorage.
 
 ### Justification for Inclusion
-This enhancement demonstrates my ability to restructure existing software for maintainability, usability, and interactivity. The modular code structure, clear user interface, and inventory management highlight proficiency in software engineering, front-end design, and JavaScript programming. The enhancement improved the artifact by providing a playable web interface with persistent game state.
+&emsp;This enhancement demonstrates my ability to restructure existing software for maintainability, usability, and interactivity. The modular code structure, clear user interface, and inventory management highlight proficiency in software engineering, front-end design, and JavaScript programming. The enhancement improved the artifact by providing a playable web interface with persistent game state.
 
 ### Reflection on the Process
-I learned to modularize code, implement dynamic user interface updates, and maintain persistent game state. Challenges included translating Python logic into JavaScript and ensuring that the map and inventory updated correctly. Feedback on user interface clarity and modularity helped improve maintainability.
+&emsp;I learned to modularize code, implement dynamic user interface updates, and maintain persistent game state. Challenges included translating Python logic into JavaScript and ensuring that the map and inventory updated correctly. Feedback on user interface clarity and modularity helped improve maintainability.
 
 ### Course Outcomes Achieved
 - Outcome 1 Collaborative Environments: Achieved. Structured GitHub repository with branching and feature organization.
