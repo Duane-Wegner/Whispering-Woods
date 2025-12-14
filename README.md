@@ -27,7 +27,7 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 ## Overview
 
-&emsp;Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](../../Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+&emsp;Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](/Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
 
 &emsp;Completing my coursework in the Computer Science program at Southern New Hampshire University and developing my ePortfolio has been a transformative experience that has helped me showcase my technical strengths, shape my professional goals, and prepare to enter the field of computer science as a competent and employable developer. Over the past two years, I have gained hands-on experience across multiple programming languages including HTML, CSS, JavaScript, Python, C, C++, and Java. These experiences have allowed me to develop a strong foundation in software engineering principles, algorithms, data structures, and database design, which I have applied in both academic and practical projects.
 
@@ -106,24 +106,28 @@ How to run Enhancement 2 (developer)
 
 1. From the repository root, start a simple static server in the enhancement-2 folder:
 
-```bash
-cd "enhancements/enhancements-2"
-python3 -m http.server 8000
-```
+    ```bash
+    cd "enhancements/enhancements-2"
+    python3 -m http.server 8000
+    ```
 
 2. Open the game page in your browser:
-
-- http://localhost:8000/game.html
-
+    ```bash
+    http://localhost:8000/game.html
+    ```
 3. Try the new highlight feature:
 
 - Click "Highlight Nearest" in the Actions panel to visualize the shortest path to the nearest item you can still collect (rooms with already-collected items are ignored).
 
 4. Run algorithm tests:
-
-- Unit tests: http://localhost:8000/js/algorithms-unit-test.html
-- Example queries/test page: http://localhost:8000/js/algorithms-test.html
-
+ - Unit tests:
+    ```bash
+     http://localhost:8000/js/algorithms-unit-test.html
+    ```
+  - Example queries/test page:
+    ```bash
+     http://localhost:8000/js/algorithms-test.html
+    ```
 Notes
 
 - All enhancement work in this folder is additive and does not modify the original `Artifact File/Whispering-Woods.py`.
@@ -241,4 +245,5 @@ Copyright © 2025 Duane Wegner.
 
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
+
 
