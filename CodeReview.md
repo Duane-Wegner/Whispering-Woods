@@ -2,4 +2,5 @@
 
 ## Artifact Code Review
 
-A video code review highlighting the development and enhancements of my Whispering Woods project can be found [here](https://www.youtube.com/watch?v=SfQXntvhU68).
+A video code review highlighting the development and enhancements of my Whispering Woods project can be found [here](https://www.youtube.com/watch?v=SfQXntvhU68). [![Whispering Woods Code Review](https://img.youtube.com/vi/SfQXntvhU68/0.jpg)](https://www.youtube.com/watch?v=SfQXntvhU68)
+
