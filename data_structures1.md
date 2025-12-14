@@ -1,5 +1,5 @@
 [Home](README.md) - [Code Review](CodeReview.md) - [Data Structures and Algorithms](data_structures.md) - [Software Engineering and Design](softeng_design.md) - [Databases](databases.md)
-### Enhancement 1: Algorithmic and User Interface Improvements
+### Enhancement 2: Algorithmic and User Interface Improvements
   
 ### Description of the Enhancement
 &emsp;Enhancement 2 improved algorithmic logic and user experience. Features added included breadth-first search pathfinding hints, enhanced inventory management, fog-of-war map updates, and algorithm testing pages.
@@ -20,4 +20,4 @@
 ### Justification for Inclusion</h3>
 
 Link to Enhancement Two:
-[Whispering Woods Enhancement One](https://github.com/Duane-Wegner/Whispering-Woods/tree/Enhancement-1)
+[Whispering Woods Enhancement One](https://github.com/Duane-Wegner/Whispering-Woods/tree/Enhancement-2)
