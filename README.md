@@ -29,7 +29,7 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 ## Overview
 
-&emsp;Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](/Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+&emsp;[Whispering Woods](https://duane-wegner.github.io/Whispering-Woods/index.html) is a browser-hosted enhancement of an [original Python text-based adventure](/Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
 
 &emsp;A video code review of the original artifact is available at [https://www.youtube.com/watch?v=SfQXntvhU68](https://www.youtube.com/watch?v=SfQXntvhU68)
 
@@ -249,6 +249,7 @@ Copyright © 2025 Duane Wegner.
 
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
+
 
 
 
