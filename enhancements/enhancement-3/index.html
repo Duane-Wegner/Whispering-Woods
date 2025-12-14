@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+  Whispering Woods – Enhancement 3
+  Purpose: Landing page for the Enhancement 3 build (local admin overlay tools).
+  Notes:
+    - Keeps the site static and GitHub Pages friendly
+    - Adds admin import/export with preview and validation
+    - Persists overlays and saves locally in the browser (localStorage)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whispering Woods - Enhancement 3</title>
+    <meta name="description" content="Whispering Woods enhancement: local admin overlay editor with import/export, preview, and client-side persistence." />
+    <meta name="keywords" content="text adventure, web game, JavaScript, HTML5, CSS, localStorage, fog of war, Whispering Woods" />
+    <meta name="author" content="Duane Wegner" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div data-include="./components/header.html"></div>
+
+    <main class="container">
+      <!-- Project overview and quick-start controls -->
+      <section class="panel intro">
+        <h2>About</h2>
+        <p>
+          Enhancement 3 extends the Whispering Woods static web build with a local admin overlay
+          editor and improved UX for safely sharing map edits. The release includes import/export
+          of overlay JSON, a preview and confirm flow for imports, and stronger client-side validation.
+        </p>
+        <p>
+          The game remains a zero-server static site. All persistence is local to the browser and repository
+          using namespaced <code>localStorage</code> keys. Overlay edits are local by design; mention of
+          any remote persistence in the codebase indicates optional enhancements only.
+        </p>
+        <ul>
+          <li>Algorithmic helpers (BFS pathfinding, nearest-item search, reachable sets)</li>
+          <li>Developer demo pages and in-browser unit tests for algorithms</li>
+          <li>Admin import/export for overlay JSON with preview and validation</li>
+          <li>Timestamped export filenames to help collaborators track changes</li>
+          <li>Static, relative-URL assets — safe to publish on GitHub Pages</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn primary" href="./game.html">Start Game</a>
+          <button class="btn" id="reset-save">Reset Saved Progress</button>
+          <a class="btn" href="./admin-login.html">Admin</a>
+          <a class="btn" href="../enhancement-1/index.html">Enhancement 1 (Software Design and Engineering)</a>
+          <a class="btn" href="../enhancements-2/index.html">Enhancement 2 (Algorithms and Data Structures)</a>
+        </div>
+      </section>
+
+      <section class="panel details">
+        <h2>How to Play</h2>
+        <p>
+          Move with the on-screen controls (or arrow keys/WASD). If a room contains an item,
+          use the Get button to add it to your inventory. When you enter Shadow Hollow wearing
+          all six items, you will face Darkroot with the best chance of victory.
+        </p>
+      </section>
+
+      <section class="panel notes">
+        <h2>Technical Notes</h2>
+        <ul>
+          <li>Vanilla ES Modules and plain HTML/CSS — no external runtime dependencies.</li>
+          <li>All assets use relative paths so the site can be served from any static host
+            (example: GitHub Pages). A Pages-focused branch is available containing only the
+            enhancement subtree for easy publishing.</li>
+          <li>Rooms and graph topology are data-driven in <code>./data/rooms.json</code>. The
+            JSON model expects a top-level <code>rooms</code> object; overlays follow the same shape.</li>
+          <li>Algorithmic features:
+            <ul>
+              <li>bfsPath: finds shortest path between two room IDs (O(V+E)).</li>
+              <li>bfsNearestWithItem: locates the nearest room containing an item.</li>
+              <li>reachableWithin: computes all rooms reachable within N steps.</li>
+            </ul>
+          </li>
+          <li>Admin overlay edits are persisted to a namespaced <code>localStorage</code> key which
+            keeps overlays separate from player saves. The Admin page supports Export and Import
+            with a preview and confirmation step for safe local editing. Exported files include a
+            timestamp in their filename to make change tracking easier.</li>
+          <li>LocalStorage namespace examples: player saves and overlays use distinct keys so
+            upgrades remain backward compatible. See <code>js/storage.js</code> for exact keys.</li>
+          <li>
+            <strong>Local persistence (how localStorage is used as a database)</strong>
+            <ul>
+              <li>The app uses the browser's <code>localStorage</code> as a lightweight local database for two purposes: player save state and admin overlay edits.</li>
+              <li>Keys are namespaced to avoid collisions. Examples include <code>ww:enh1:save:v1</code> for the save slot and <code>ww:enh1:admin:overlay:v1</code> for admin overlays; see <code>js/storage.js</code> and <code>js/admin/model.js</code>.</li>
+              <li>Overlay files follow the same JSON shape as <code>data/rooms.json</code> and are merged at runtime by <code>js/state.js</code>, so overlay edits do not permanently modify the base JSON file.</li>
+              <li>localStorage is local to the browser profile and origin only. To share edits, use the Admin Export button to download an overlay JSON file, then import it in another browser or on another machine.</li>
+              <li>Be aware of browser storage limits (typically around 5MB per origin). Keep overlays reasonably small and use the export workflow to archive or transfer large changes.</li>
+              <li>Inspect persisted keys in browser DevTools under Application or Storage for the current origin.</li>
+            </ul>
+          </li>
+          <li>Accessibility: keyboard controls (arrow keys / WASD) and clear focusable buttons are
+            implemented; enhancements can be extended with ARIA announcements and toasts.</li>
+        </ul>
+      </section>
+    </main>
+
+    <div data-include="./components/footer.html"></div>
+    <script type="module" src="./js/include-html.js"></script>
+    <script type="module">
+      import { clearSave } from './js/storage.js';
+      const reset = document.getElementById('reset-save');
+      reset?.addEventListener('click', () => {
+        if (confirm('Clear saved progress? This cannot be undone.')) {
+          clearSave();
+          alert('Saved progress cleared.');
+        }
+      });
+    </script>
+  </body>
+  </html>

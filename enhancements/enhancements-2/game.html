@@ -1,0 +1,121 @@
+<!doctype html>
+<!--
+  Whispering Woods – Enhancement 1 (Game)
+  Purpose: Primary gameplay UI. Static, client-only implementation.
+  Layout:
+    - Left: Fog-of-war map
+    - Center: Room info, movement controls, action buttons, alerts/log
+    - Right: Inventory and character panel (icons)
+  Accessibility:
+    - Buttons include ARIA labels; log/alerts use aria-live
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whispering Woods - Play</title>
+    <meta name="description" content="Play Whispering Woods - a browser-based text-adventure style game with a fog-of-war map and inventory." />
+    <meta name="keywords" content="Whispering Woods, web game, adventure game, fog of war, inventory, JavaScript" />
+    <meta name="author" content="Duane Wegner" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div data-include="./components/header.html"></div>
+
+    <main class="game-layout">
+      <!-- Left sidebar: mini-map and legend -->
+      <aside class="sidebar left">
+        <h2 class="panel-title">Map</h2>
+        <div id="map" class="map-grid" aria-label="Map of explored rooms"></div>
+        <div class="legend">
+          <span class="legend-item current"></span> Current
+          <span class="legend-item visited"></span> Visited
+          <span class="legend-item unknown"></span> Unknown
+        </div>
+      </aside>
+
+      <!-- Main panel: room title/desc, movement and actions, alerts/log -->
+      <section class="main-panel">
+        <div class="room-header">
+          <h2 id="room-name">Room</h2>
+          <span id="room-sub" class="room-sub"></span>
+        </div>
+        <p id="room-desc" class="room-desc"></p>
+
+        <div class="controls" role="group" aria-label="Movement controls">
+          <button class="btn dir" data-dir="North" id="btn-n" aria-label="Move North">↑ North</button>
+          <div class="h-row">
+            <button class="btn dir" data-dir="West" id="btn-w" aria-label="Move West">← West</button>
+            <button class="btn dir" data-dir="East" id="btn-e" aria-label="Move East">East →</button>
+          </div>
+          <button class="btn dir" data-dir="South" id="btn-s" aria-label="Move South">South ↓</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="btn-get" disabled>Get Item</button>
+          <button class="btn" id="btn-highlight">Highlight Nearest</button>
+          <button class="btn" id="btn-neighbors">Show Neighbors</button>
+          <button class="btn" id="btn-reachable">Show Reachable (N)</button>
+          <button class="btn" id="btn-reset">Reset Game</button>
+        </div>
+
+        <div id="alerts" class="alerts" role="status" aria-live="polite"></div>
+        <div class="log" id="log" aria-live="polite" aria-label="Game log"></div>
+      </section>
+
+      <!-- Right sidebar: inventory and character (graphical equipment view) -->
+      <aside class="sidebar right">
+        <h2 class="panel-title">Inventory <span id="inv-count" class="badge">0/6</span></h2>
+        <ul id="inventory" class="inventory" aria-label="Inventory list"></ul>
+        <h2 class="panel-title">Character</h2>
+        <div id="equip" class="icons-grid" aria-label="Equipped items"></div>
+      </aside>
+    </main>
+
+    <!-- Generic modal used for win/lose prompts -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <h3 id="modal-title">Result</h3>
+        <p id="modal-body"></p>
+        <div class="modal-actions">
+          <button class="btn primary" id="modal-restart">Restart</button>
+          <a class="btn" href="./index.html">Exit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Intro Story Modal (first-run only; can be replayed by clearing intro flag) -->
+    <div id="intro-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+      <div class="modal-content">
+        <h3 id="intro-title">The Elders' Plea</h3>
+        <p>
+          You are <strong>Sprout</strong>, a young guardian candidate summoned beneath the boughs of the Whispering Grove.
+          The forest trembles under the creeping corruption of <strong>Darkroot</strong>, a treant twisted by shadowed druidic magic.
+        </p>
+        <p>
+          The circle of elders speaks in rustling harmony:
+          <em>"Balance falters. Light fades where Darkroot roots have taken hold. You must gather the six Items of Power, only then can you face him in Shadow Hollow."</em>
+        </p>
+        <ul>
+          <li><strong>Silver Axe</strong> - Its pure edge can bite through Darkroot's bark.</li>
+          <li><strong>Sunlight Elixir</strong> - A radiant brew that weakens his shadow ward.</li>
+          <li><strong>Ancient Rune</strong> - A glyph of dawn to pierce the choking gloom.</li>
+          <li><strong>Barkskin Potion</strong> - Hardens your defense against crushing limbs.</li>
+          <li><strong>Druidic Staff</strong> - Channels nature's fire to sear corruption.</li>
+          <li><strong>Cloak</strong> - Shrouds your form, granting agility and concealment.</li>
+        </ul>
+        <p>
+          When all six rest in your pack, journey north from the Moonlight Clearing into <strong>Shadow Hollow</strong> and end Darkroot's reign.
+          Enter unprepared and the forest will mourn, return complete, and the Woods will whisper your name for ages.
+        </p>
+        <div class="modal-actions">
+          <button class="btn primary" id="intro-begin">Begin the Quest</button>
+        </div>
+      </div>
+    </div>
+
+    <div data-include="./components/footer.html"></div>
+    <script type="module" src="./js/include-html.js"></script>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+  </html>
