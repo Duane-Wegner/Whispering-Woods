@@ -1,6 +1,21 @@
 # Whispering-Woods
 CS-499 Computer Science Capstone 2025
 
+---
+
+## Table of contents
+
+- [Self-Assessment](#overview)
+- [Enhancements](#enhancements)
+  - Enhancement 1 - Web-based Conversion
+  - Enhancement 2 - Algorithms & Data Structures
+  - Enhancement 3 - Databases
+- [Screenshots](#screenshots)
+- [How to run](#how-to-run-developer) (developer)
+- [Developer notes](#developer-notes)
+- [License & contact](#license--contact)
+
+---
 ## Author
 
 - Name: Duane Wegner
@@ -27,22 +42,6 @@ Short bio: I am a computer science student focusing on full-stack development an
 &emsp;The artifacts included in my ePortfolio reflect a progression of skills and demonstrate a range of competencies that work together to illustrate my capabilities. Whispering Woods highlights my ability to convert a Python text-based game into a web-based interactive application, showcasing my skills in software engineering, algorithmic design, data structures, and database integration. Each enhancement demonstrates growth in modular coding, scalability, and secure data management, providing concrete evidence of my technical expertise. Together, these artifacts form a cohesive portfolio that presents a comprehensive view of my abilities and readiness to contribute effectively in a professional setting.
 
 &emsp;This professional self-assessment serves as an introduction to my ePortfolio and illustrates my strengths as a computer science professional. It emphasizes my ability to collaborate, communicate, design efficient solutions, implement software and database systems, and maintain secure practices. The artifacts that follow provide tangible examples of these skills in action and collectively demonstrate my preparedness to meet the demands of a career in computer science.
-
-
----
-
-## Table of contents
-
-- [Enhancements](#enhancements)
-  - Enhancement 1 - Web-based Conversion
-  - Enhancement 2 - Algorithms & Data Structures
-  - Enhancement 3 - Databases
-- [Screenshots](#screenshots)
-- [How to run](#how-to-run-developer) (developer)
-- [Developer notes](#developer-notes)
-- [License & contact](#license--contact)
-
----
 
 ## Enhancements
 
@@ -242,3 +241,4 @@ Copyright © 2025 Duane Wegner.
 
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
+
