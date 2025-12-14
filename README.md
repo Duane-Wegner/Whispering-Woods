@@ -12,7 +12,22 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 ## Overview
 
-Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](../../Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+&emsp;Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](../../Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
+
+&emsp;Completing my coursework in the Computer Science program at Southern New Hampshire University and developing my ePortfolio has been a transformative experience that has helped me showcase my technical strengths, shape my professional goals, and prepare to enter the field of computer science as a competent and employable developer. Over the past two years, I have gained hands-on experience across multiple programming languages including HTML, CSS, JavaScript, Python, C, C++, and Java. These experiences have allowed me to develop a strong foundation in software engineering principles, algorithms, data structures, and database design, which I have applied in both academic and practical projects.
+
+&emsp;Throughout the program, I have developed the ability to collaborate effectively in team environments, using version control systems to coordinate work, manage branches, and integrate code with peers. I have also strengthened my communication skills by documenting project requirements, writing technical reports, and providing clear explanations of complex concepts. These experiences have reinforced my ability to translate technical knowledge into actionable solutions that are understandable to both technical and non-technical audiences.
+
+&emsp;In addition to the projects featured in my ePortfolio, I have completed several other technical projects that have further developed my skills. I created an Android inventory application that tracks items dynamically, demonstrating my ability to work with mobile interfaces, implement object-oriented design, and manage data structures efficiently. In another project, I developed a 3D image rendering of a desk, which allowed me to explore computational graphics, coordinate transformations, and visual representation of objects. I have also gained practical experience working with both SQL and NoSQL databases, designing and implementing persistent storage solutions for multiple applications. These experiences provided a solid foundation in database management, data modeling, and efficient data retrieval.
+
+&emsp;My work with data structures and algorithms has strengthened my ability to design and implement efficient, scalable, and reliable solutions. I have created dynamic inventory systems, implemented pathfinding algorithms for game exploration, and optimized navigation and storage mechanisms. These experiences have improved my analytical thinking and problem-solving abilities, which are essential for any professional in computer science.
+
+&emsp;Software engineering and database management have been central to my development as a programmer. I have designed modular and maintainable code architectures, implemented interactive front-end interfaces, and integrated persistent data storage systems. Security has been an ongoing focus, and I have applied defensive coding practices, secure storage techniques, and validation methods to mitigate potential vulnerabilities, reinforcing a security-conscious approach to software design.
+
+&emsp;The artifacts included in my ePortfolio reflect a progression of skills and demonstrate a range of competencies that work together to illustrate my capabilities. Whispering Woods highlights my ability to convert a Python text-based game into a web-based interactive application, showcasing my skills in software engineering, algorithmic design, data structures, and database integration. Each enhancement demonstrates growth in modular coding, scalability, and secure data management, providing concrete evidence of my technical expertise. Together, these artifacts form a cohesive portfolio that presents a comprehensive view of my abilities and readiness to contribute effectively in a professional setting.
+
+&emsp;This professional self-assessment serves as an introduction to my ePortfolio and illustrates my strengths as a computer science professional. It emphasizes my ability to collaborate, communicate, design efficient solutions, implement software and database systems, and maintain secure practices. The artifacts that follow provide tangible examples of these skills in action and collectively demonstrate my preparedness to meet the demands of a career in computer science.
+
 
 ---
 
@@ -31,89 +46,89 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
 
 ## Enhancements
 
-    ### Enhancement 1 - Web-based Conversion (enhancement-1)
+  ### Enhancement 1 - Web-based Conversion (enhancement-1)
 
-    Summary
+  Summary
 
-    - Converts the original Python text adventure into a playable browser game.
-    - Implemented using static HTML, CSS, and ES modules (no external libraries) so it can be hosted on GitHub Pages.
-    - Uses localStorage for player save state and a separate local overlay for admin edits.
+  - Converts the original Python text adventure into a playable browser game.
+  - Implemented using static HTML, CSS, and ES modules (no external libraries) so it can be hosted on GitHub Pages.
+  - Uses localStorage for player save state and a separate local overlay for admin edits.
 
-    Key features
+  Key features
 
-    - Fog-of-war map that reveals rooms as the player explores.
-    - Keyboard controls (arrow keys and WASD) and clickable buttons.
-    - Inventory system with icons and progress badge.
-    - Admin overlay UI (local-only) to add or tweak rooms, items, and exits; overlay merges at runtime.
-    - Intro and endgame modals.
+  - Fog-of-war map that reveals rooms as the player explores.
+  - Keyboard controls (arrow keys and WASD) and clickable buttons.
+  - Inventory system with icons and progress badge.
+  - Admin overlay UI (local-only) to add or tweak rooms, items, and exits; overlay merges at runtime.
+  - Intro and endgame modals.
 
-    Project structure
+  Project structure
 
-    - `index.html` - Landing page and entry to the game.
-    - `game.html` - Main gameplay page (map, controls, inventory, log, modals).
-    - `admin.html` - Main administrator page (edits rooms, add rooms)
-    - `css/styles.css` - Theme, layout, and map cell styles.
-    - `data/rooms.json` - Base room graph and items.
-    - `js/` - ES module code (storage, state, game rules, UI renderers, admin tools).
+  - `index.html` - Landing page and entry to the game.
+  - `game.html` - Main gameplay page (map, controls, inventory, log, modals).
+  - `admin.html` - Main administrator page (edits rooms, add rooms)
+  - `css/styles.css` - Theme, layout, and map cell styles.
+  - `data/rooms.json` - Base room graph and items.
+  - `js/` - ES module code (storage, state, game rules, UI renderers, admin tools).
 
-    How to play
+  How to play
 
-    1. Open `index.html` (or host the folder on GitHub Pages and visit the published URL).
-    2. Click Start Game.
-    3. Use arrow keys or WASD to move; or click direction buttons.
-    4. Click Get Item when an item is present in the room; collected items persist locally.
-    5. Enter Shadow Hollow with all six key items to win the game.
-    6. Use Reset Game to clear the current run.
+  1. Open `index.html` (or host the folder on GitHub Pages and visit the published URL).
+  2. Click Start Game.
+  3. Use arrow keys or WASD to move; or click direction buttons.
+  4. Click Get Item when an item is present in the room; collected items persist locally.
+  5. Enter Shadow Hollow with all six key items to win the game.
+  6. Use Reset Game to clear the current run.
 
   <br>
 
-    ### Enhancement 2 - Algorithms & Data Structures (enhancements-2)
+  ### Enhancement 2 - Algorithms & Data Structures (enhancements-2)
 
-    Summary
+  Summary
 
-    - Adds Category Two work: graph algorithms and data-structure improvements to support efficient map exploration, pathfinding, and inventory-aware queries.
-    - Implements BFS shortest-path, BFS nearest-item (ignores items already owned), and reachable-set traversal. Adds unit tests and a small UI control to highlight paths on the map.
+  - Adds Category Two work: graph algorithms and data-structure improvements to support efficient map exploration, pathfinding, and inventory-aware queries.
+  - Implements BFS shortest-path, BFS nearest-item (ignores items already owned), and reachable-set traversal. Adds unit tests and a small UI control to highlight paths on the map.
 
-    Key features (Enhancement 2)
+  Key features (Enhancement 2)
 
-    - `js/algorithms.js` — BFS-based helpers: `bfsPath`, `bfsNearestWithItem`, and `reachableRooms` (with Big-O comments).
-    - `js/game.js` (modified) — exposes `findNearestItemPath` (now respects player's inventory) and `findPath` helpers.
-    - `js/main.js` (modified) — adds a "Highlight Nearest" button that visualizes the nearest acquirable item on the map.
-    - `js/algorithms-test.html` and `js/algorithms-unit-test.html` — simple browser pages to run example queries and unit tests for the algorithms.
-    - `css/styles.css` — added path highlight styles.
+  - `js/algorithms.js` — BFS-based helpers: `bfsPath`, `bfsNearestWithItem`, and `reachableRooms` (with Big-O comments).
+  - `js/game.js` (modified) — exposes `findNearestItemPath` (now respects player's inventory) and `findPath` helpers.
+  - `js/main.js` (modified) — adds a "Highlight Nearest" button that visualizes the nearest acquirable item on the map.
+  - `js/algorithms-test.html` and `js/algorithms-unit-test.html` — simple browser pages to run example queries and unit tests for the algorithms.
+  - `css/styles.css` — added path highlight styles.
 
-    How Enhancement 2 improves the project
+  How Enhancement 2 improves the project
 
-    - Demonstrates O(V+E) BFS traversal for pathfinding (scales to larger maps without changing algorithmic logic).
-    - Inventory-aware nearest-item search prevents recommending rooms whose items the player already collected.
-    - Adds testability with a unit-test HTML page and a visual demo (highlighting) for quicker instructor validation.
+  - Demonstrates O(V+E) BFS traversal for pathfinding (scales to larger maps without changing algorithmic logic).
+  - Inventory-aware nearest-item search prevents recommending rooms whose items the player already collected.
+  - Adds testability with a unit-test HTML page and a visual demo (highlighting) for quicker instructor validation.
 
-  How to run Enhancement 2 (developer)
+How to run Enhancement 2 (developer)
 
-  1. From the repository root, start a simple static server in the enhancement-2 folder:
+1. From the repository root, start a simple static server in the enhancement-2 folder:
 
-  ```bash
-  cd "enhancements/enhancements-2"
-  python3 -m http.server 8000
-  ```
+```bash
+cd "enhancements/enhancements-2"
+python3 -m http.server 8000
+```
 
-  2. Open the game page in your browser:
+2. Open the game page in your browser:
 
-  - http://localhost:8000/game.html
+- http://localhost:8000/game.html
 
-  3. Try the new highlight feature:
+3. Try the new highlight feature:
 
-  - Click "Highlight Nearest" in the Actions panel to visualize the shortest path to the nearest item you can still collect (rooms with already-collected items are ignored).
+- Click "Highlight Nearest" in the Actions panel to visualize the shortest path to the nearest item you can still collect (rooms with already-collected items are ignored).
 
-  4. Run algorithm tests:
+4. Run algorithm tests:
 
-  - Unit tests: http://localhost:8000/js/algorithms-unit-test.html
-  - Example queries/test page: http://localhost:8000/js/algorithms-test.html
+- Unit tests: http://localhost:8000/js/algorithms-unit-test.html
+- Example queries/test page: http://localhost:8000/js/algorithms-test.html
 
-  Notes
+Notes
 
-  - All enhancement work in this folder is additive and does not modify the original `Artifact File/Whispering-Woods.py`.
-  - The BFS nearest-item helper accepts an optional `ownedItems` list or Set so it can be reused elsewhere (e.g., AI recommendations) while remaining backwards-compatible.
+- All enhancement work in this folder is additive and does not modify the original `Artifact File/Whispering-Woods.py`.
+- The BFS nearest-item helper accepts an optional `ownedItems` list or Set so it can be reused elsewhere (e.g., AI recommendations) while remaining backwards-compatible.
 
   ## Enhancement 2 — Evidence & Course Outcomes
 
@@ -145,66 +160,66 @@ Whispering Woods is a browser-hosted enhancement of an [original Python text-bas
 
   <br>
 
-    ### Enhancement 3 - Local Admin Overlay & UX (enhancement-3)
+  ### Enhancement 3 - Local Admin Overlay & UX (enhancement-3)
 
-    Summary
+  Summary
 
-    - Extends the admin overlay workflow with a safer import experience and improved UX while keeping all persistence local to the browser.
-    - Adds preview and confirm step for imported overlays, stronger client-side validation, and timestamped export filenames to help trace changes when collaborators share overlay files.
+  - Extends the admin overlay workflow with a safer import experience and improved UX while keeping all persistence local to the browser.
+  - Adds preview and confirm step for imported overlays, stronger client-side validation, and timestamped export filenames to help trace changes when collaborators share overlay files.
 
-    Key features (Enhancement 3)
+  Key features (Enhancement 3)
 
-    - Admin Import Preview: after selecting a JSON file, the admin UI shows a formatted preview and requires explicit confirmation before applying changes.
-    - Stronger Validation: imports are validated for expected shapes (top-level object, `rooms` map, per-room `name`, `desc`, `pos`, `item`, and `exits`). Invalid files are rejected with clear messages.
-    - Timestamped Exports: exported overlay files are named like `overlay-YYYYMMDD-HHMMSS.json` to help collaborators identify versions.
-    - Local-only Persistence: all changes remain stored in the browser via namespaced keys; no server-side persistence is added in this enhancement.
+  - Admin Import Preview: after selecting a JSON file, the admin UI shows a formatted preview and requires explicit confirmation before applying changes.
+  - Stronger Validation: imports are validated for expected shapes (top-level object, `rooms` map, per-room `name`, `desc`, `pos`, `item`, and `exits`). Invalid files are rejected with clear messages.
+  - Timestamped Exports: exported overlay files are named like `overlay-YYYYMMDD-HHMMSS.json` to help collaborators identify versions.
+  - Local-only Persistence: all changes remain stored in the browser via namespaced keys; no server-side persistence is added in this enhancement.
 
-    Storage and Authentication (local databases)
+  Storage and Authentication (local databases)
 
-    - The app uses browser storage as lightweight local databases:
-      - `localStorage` holds persistent data across browser sessions for the origin. Keys are namespaced via the storage helper so the effective keys include the namespace prefix. Examples you will see in the code and DevTools include:
-        - `ww:enh1:save:v1` — player save slot (full runtime state snapshot).
-        - `ww:enh1:admin:overlay:v1` — admin overlay JSON that patches `data/rooms.json` at runtime.
-        - `ww:enh1:admin:pwdhash:v1` — SHA-256 hash of the admin password for local-only auth.
-      - `sessionStorage` is used for a per-tab admin session flag: `admin:session:v1` (cleared on tab close).
+  - The app uses browser storage as lightweight local databases:
+    - `localStorage` holds persistent data across browser sessions for the origin. Keys are namespaced via the storage helper so the effective keys include the namespace prefix. Examples you will see in the code and DevTools include:
+      - `ww:enh1:save:v1` — player save slot (full runtime state snapshot).
+      - `ww:enh1:admin:overlay:v1` — admin overlay JSON that patches `data/rooms.json` at runtime.
+      - `ww:enh1:admin:pwdhash:v1` — SHA-256 hash of the admin password for local-only auth.
+    - `sessionStorage` is used for a per-tab admin session flag: `admin:session:v1` (cleared on tab close).
 
-    - Overlay behavior:
-      - Overlays mirror the shape of `data/rooms.json` and are merged at runtime by `js/state.js`. Overlays do not change the base JSON file on disk; they only affect the running application in that browser profile.
-      - To share overlays between browsers or teammates, use the Admin Export button to download a JSON file and the Admin Import to load it into a different browser or profile.
+  - Overlay behavior:
+    - Overlays mirror the shape of `data/rooms.json` and are merged at runtime by `js/state.js`. Overlays do not change the base JSON file on disk; they only affect the running application in that browser profile.
+    - To share overlays between browsers or teammates, use the Admin Export button to download a JSON file and the Admin Import to load it into a different browser or profile.
 
-    - Practical notes:
-      - localStorage is per-origin and per-profile; it is not a replacement for a centralized database. Typical browser quotas are around 5MB per origin. Keep overlays small and use export/import for transfer or archival.
-      - The stored password hash is readable by anyone with access to the browser profile; the local auth is convenience-only and not a secure authentication mechanism.
+  - Practical notes:
+    - localStorage is per-origin and per-profile; it is not a replacement for a centralized database. Typical browser quotas are around 5MB per origin. Keep overlays small and use export/import for transfer or archival.
+    - The stored password hash is readable by anyone with access to the browser profile; the local auth is convenience-only and not a secure authentication mechanism.
 
 ## Screenshots
 
 ### Admin Login<br>
 A lightweight local-only login screen used to protect the admin overlay.<br>
-<img src="images/admin-login.png" width="500" height="250">
+<img src="enhancements/enhancement-3/images/admin-login.png" width="500" height="250">
 
 ### Admin Panel<br>
 Tools for editing rooms, items, exits, and map metadata during development.<br>
-<img src="images/admin-panel.png" width="500">
+<img src="enhancements/enhancement-3/images/admin-panel.png" width="500">
 
 ### Home Page<br>
 Landing page that leads into the main game.<br>
-<img src="images/home.png" width="500">
+<img src="enhancements/enhancement-3/images/home.png" width="500">
 
 ### Game Play<br>
 Main interface showing the fog-of-war map, inventory, movement controls, and event log.<br>
-<img src="images/game.png" width="500">
+<img src="enhancements/enhancement-3/images/game.png" width="500">
 
 ### Add Room / Export Changes / Import Changes
 Admin interface showing the added features and a working test room that has been added.<br>
-<img src="images/test-a.png" width="500"> <img src="images/test-a_Room.png" width="500">
+<img src="enhancements/enhancement-3/images/test-a.png" width="500"> <img src="images/test-a_Room.png" width="500">
 
 ### Algorithms Demo
 Admin interface showcasing the Algorithms Demo.<br>
-<img src="images/AlgoTest.png" width="500">
+<img src="enhancements/enhancement-3/images/AlgoTest.png" width="500">
 
 ### Algorithms Unit Tests
 Admin interface showcasing the Algorithms Unit Test.<br>
-<img src="images/algoUnitTest.png" width="500">
+<img src="enhancements/enhancement-3/images/algoUnitTest.png" width="500">
 
 
 # Developer notes
@@ -224,5 +239,6 @@ Admin interface showcasing the Algorithms Unit Test.<br>
 ## License & contact
 
 Copyright © 2025 Duane Wegner.
+
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
