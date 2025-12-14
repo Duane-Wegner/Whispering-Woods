@@ -29,6 +29,8 @@ Short bio: I am a computer science student focusing on full-stack development an
 
 &emsp;Whispering Woods is a browser-hosted enhancement of an [original Python text-based adventure](/Artifact%20File/Whispering-Woods.py). This enhancement converts the original artifact into a static, GitHub Pages–friendly application implemented using HTML, CSS, and vanilla JavaScript. All game state is persisted locally (localStorage) and the admin overlay is local-only for easy editing during development.
 
+&emsp;A video code review of the original artifact is available at [https://www.youtube.com/watch?v=SfQXntvhU68](https://www.youtube.com/watch?v=SfQXntvhU68)
+
 &emsp;Completing my coursework in the Computer Science program at Southern New Hampshire University and developing my ePortfolio has been a transformative experience that has helped me showcase my technical strengths, shape my professional goals, and prepare to enter the field of computer science as a competent and employable developer. Over the past two years, I have gained hands-on experience across multiple programming languages including HTML, CSS, JavaScript, Python, C, C++, and Java. These experiences have allowed me to develop a strong foundation in software engineering principles, algorithms, data structures, and database design, which I have applied in both academic and practical projects.
 
 &emsp;Throughout the program, I have developed the ability to collaborate effectively in team environments, using version control systems to coordinate work, manage branches, and integrate code with peers. I have also strengthened my communication skills by documenting project requirements, writing technical reports, and providing clear explanations of complex concepts. These experiences have reinforced my ability to translate technical knowledge into actionable solutions that are understandable to both technical and non-technical audiences.
@@ -245,5 +247,6 @@ Copyright © 2025 Duane Wegner.
 
 
 All rights reserved. This repository is provided for viewing and evaluation only. No permission is granted to use, copy, modify, or distribute without written consent. [Email Me](mailto:duane.wegner@gmail.com)
+
 
 
