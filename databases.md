@@ -1,4 +1,4 @@
-[Home](README.md) - [Code Review](CodeReview.md) - [Data Structures and Algorithms](data_structures.md) - [Software Engineering and Design](softeng_design.md) - [Databases](databases.md)
+[Home](README.md) - [Code Review](CodeReview.md) - [Data Structures and Algorithms](data_structures.md) - [Software Engineering and Design](softeng_design.md) - [Databases](databases.md) - [Self-Assessment](selfassessment.md)
 
 ### Enhancement 3: Full-Stack Integration and Admin Features
 
